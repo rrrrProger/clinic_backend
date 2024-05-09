@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 app.use(cors({
     origin: 'http://localhost:3000', // Replace with your Vue.js client's URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
@@ -15,7 +15,6 @@ mongoose.connect('mongodb+srv://tsymbaljuk2001:messi10ronaldo7@cluster0.k870rvy.
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
-
 
 const productRoutes = require('./routes/productRoutes'); // Adjust the path as needed
 
