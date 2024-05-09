@@ -7,6 +7,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "inspect": "vue-cli-service inspect",
     "start": "node server.js"
   },
   "author": "",
@@ -18,7 +19,10 @@
     "express-openid-connect": "^2.16.0",
     "mongoose-mock": "^0.4.0",
     "serve-static": "^1.15.0",
-    "vue-template-compiler": "^2.7.16"
+    "vue-route": "^1.5.1",
+    "vue-router": "^4.3.2",
+    "vuex": "^4.0.2",
+    "webpack": "^5.91.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.5",
@@ -32,6 +36,8 @@
     "mocha": "^10.2.0",
     "mongoose": "^7.4.5",
     "sinon": "^15.2.0",
-    "sinon-chai": "^3.7.0"
+    "sinon-chai": "^3.7.0",
+    "vue-loader": "^15.9.5",
+    "vue-template-compiler": "^2.7.16"
   }
 }
