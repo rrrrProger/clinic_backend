@@ -1,3 +1,13 @@
 // vue.config.js
-const { defineConfig } = require('@vue/cli-service')
-const { resolve } = require('./webpack.config')
+module.exports = {
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': __dirname + '/cloud_clinic_frontend'
+      }
+    },
+    entry: {
+      app: './cloud_clinic_frontend/src/main.ts'
+    }
+  }
+}
