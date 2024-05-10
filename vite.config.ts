@@ -9,7 +9,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  root: path.join(__dirname, "cloud_clinic_frontend"),
+  root: "./cloud_clinic_frontend",
   plugins: [
     vue({
       template: { transformAssetUrls }
