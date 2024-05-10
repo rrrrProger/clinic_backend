@@ -19,7 +19,8 @@
     "vue-route": "^1.5.1",
     "vue-router": "^4.3.2",
     "vuex": "^4.0.2",
-    "webpack": "^5.91.0"
+    "webpack": "^5.91.0",
+    "vue-tsc": "^0.40.13"
   },
   "devDependencies": {
     "@types/chai": "^4.3.5",
