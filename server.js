@@ -27,7 +27,7 @@ const productRoutes = require('./routes/productRoutes'); // Adjust the path as n
 app.use(bodyParser.json());
 app.use(productRoutes);
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${port}`);
 });
 
