@@ -22,10 +22,10 @@ mongoose.connect('mongodb+srv://tsymbaljuk2001:messi10ronaldo7@cluster0.k870rvy.
     useUnifiedTopology: true
 });
 
-const productRoutes = require('./routes/productRoutes'); // Adjust the path as needed
+const patientRoutes = require('./routes/patientsRouter'); // Adjust the path as needed
 
 app.use(bodyParser.json());
-app.use(productRoutes);
+app.use(patientRoutes);
 
 app.listen(process.env.PORT | port, () => {
     console.log(`Server is running on port ${port}`);

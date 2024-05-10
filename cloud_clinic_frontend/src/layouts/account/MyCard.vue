@@ -153,28 +153,6 @@ const cancelEdit = () => {
   editedData.value = {...userData.value.additionalInfo};
 };
 
-methods: {
-   async function sendData() {
-    console.log('XXX', 'this.email', 'this.address', 'this.gender');
-     console.log(await axios({
-      url: 'http://localhost:3000/api/records',
-       method: 'post',
-       data: {
-         name: 'this.name',
-         email: 'this.email',
-         address: 'this.address',
-         gender: 'this.gender'
-       }
-      }));
-   }
-}
+axios.post("/card",{body:"dan"}).then((e) => console.log(e))
 
-axios.get('/api/')
-  .then((response) => {
-    console.log('**************data: ', response.data);
-    console.log(response.status);
-    console.log(response.statusText);
-    console.log(response.headers);
-    console.log(response.config);
-  });
 </script>

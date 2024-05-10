@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const productSchema = new mongoose.Schema({
+const patientSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -13,4 +13,4 @@ const productSchema = new mongoose.Schema({
 
 //const Product = mongoose.model('Product', productSchema);
 
-module.exports = mongoose.models.Product || mongoose.model('Product', productSchema);
+module.exports = mongoose.models.patientSchema || mongoose.model('Patient', patientSchema);
