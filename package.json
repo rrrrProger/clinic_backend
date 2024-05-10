@@ -4,10 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
     "build": "cd cloud_clinic_frontend && vue-tsc --noEmit && vite build",
-    "lint": "vue-cli-service lint",
-    "inspect": "vue-cli-service inspect",
     "start": "node server.js"
   },
   "author": "",
