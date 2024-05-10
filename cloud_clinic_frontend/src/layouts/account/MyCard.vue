@@ -96,8 +96,8 @@
             </v-expansion-panel-title>
             <!--            <span class="headline">{{ userData.name }}</span>-->
             <div class="d-flex justify-center">
-              <v-file-input multiple truncate-length="15"></v-file-input>
-              <button>Завантажити</button>
+              <v-file-input multiple truncate-length="15" ref="myfile" model="files" @change="selectFile"></v-file-input>
+              <v-btn text @click="send_files($event)">Завантажити</v-btn>
             </div>
           </v-expansion-panel>
           <v-expansion-panel>
@@ -117,12 +117,15 @@
 </template>
 
 <script setup lang="ts">
+
 import {ref, onMounted} from 'vue';
 import {mdiMagnify} from "@mdi/js";
 import axios from 'axios';
 import dwv from "dwv";
 
-console.log('Imported axios');
+let object = {
+  currentFile: null
+};
 
 const userData = ref({
   name: 'John Doe',
@@ -153,6 +156,20 @@ const cancelEdit = () => {
   editedData.value = {...userData.value.additionalInfo};
 };
 
-axios.post("/card",{body:"dan"}).then((e) => console.log(e))
 
+
+function selectFile(file) {
+  object.currentFile = file;
+}
+
+function send_files() {
+  if (object.currentFile) {
+    let formData = new FormData();
+
+    console.log(object.currentFile)
+
+    
+    formData.append("file", object.currentFile);
+  }
+}
 </script>
