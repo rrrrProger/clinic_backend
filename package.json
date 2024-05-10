@@ -4,12 +4,14 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "cd cloud_clinic_frontend && vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit && vite build cloud_clinic_frontend",
     "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
     "axios": "^1.4.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
@@ -18,9 +20,9 @@
     "serve-static": "^1.15.0",
     "vue-route": "^1.5.1",
     "vue-router": "^4.3.2",
+    "vue-tsc": "^0.40.13",
     "vuex": "^4.0.2",
-    "webpack": "^5.91.0",
-    "vue-tsc": "^0.40.13"
+    "webpack": "^5.91.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.5",
@@ -35,11 +37,13 @@
     "mongoose": "^7.4.5",
     "sinon": "^15.2.0",
     "sinon-chai": "^3.7.0",
-    "typescript": "^4.7.4",
     "ts-node": "^10.9.1",
+    "typescript": "^4.7.4",
     "vite": "^5.2.11",
+    "vite-plugin-vuetify": "^2.0.3",
     "vue-loader": "^15.11.1",
     "vue-template-compiler": "^2.7.16",
-    "vue-tsc": "^0.40.13"
+    "vue-tsc": "^0.40.13",
+    "vuetify": "^3.6.4"
   }
 }

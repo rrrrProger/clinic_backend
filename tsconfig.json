@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./cloud_clinic_frontend",
     "target": "esnext",
     "useDefineForClassFields": true,
     "allowSyntheticDefaultImports": true,
@@ -13,20 +13,18 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "types": [
-      "node",
-      "vuetify"
+      "node"
     ],
-    "paths": {
-      "@/*": ["src/*"]
-    },
     "allowJs": true,
     "skipLibCheck": true,
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "vite.config.ts",
+    "./cloud_clinic_frontend/src/**/*.ts",
+    "./cloud_clinic_frontend/src/**/*.d.ts",
+    "./cloud_clinic_frontend/src/**/*.tsx",
+    "./cloud_clinic_frontend/src/**/*.vue",
+    "./cloud_clinic_frontend/src/*",
+    "cloud_clinic_frontend/vite.config.ts",
+    "cloud_clinic_frontend"
   ]
 }
