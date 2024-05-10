@@ -169,4 +169,12 @@ methods: {
    }
 }
 
+axios.get('/api/')
+  .then((response) => {
+    console.log('**************data: ', response.data);
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.headers);
+    console.log(response.config);
+  });
 </script>

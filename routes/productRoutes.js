@@ -3,14 +3,9 @@ const router = express.Router();
 const Product = require('../models/Product'); // Adjust the path as needed
 
 // GET /api/products
-router.get('/api/products', async (req, res) => {
-  try {
-    const products = await Product.find();
-    res.json(products);
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    res.status(500).json({ error: 'An error occurred while fetching products' });
-  }
+router.get('/api/', async (req, res) => {
+  res.status = 600;
+  console.error('Hi here');
 });
 
 // POST /api/products
