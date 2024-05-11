@@ -107,7 +107,7 @@
             </v-expansion-panel-title>
             <!--            <span class="headline">{{ userData.name }}</span>-->
             <div class="d-flex justify-center">
-              <v-btn>Переглянути</v-btn>
+              <v-btn text @click="receive_files($event)">Переглянути</v-btn>
             </div>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -117,7 +117,6 @@
 </template>
 
 <script setup lang="ts">
-
 import {ref, onMounted} from 'vue';
 import {mdiMagnify} from "@mdi/js";
 import axios from 'axios';
@@ -156,8 +155,6 @@ const cancelEdit = () => {
   editedData.value = {...userData.value.additionalInfo};
 };
 
-
-
 function selectFile(event) {
   const target= event.target as EventTarget ;
   const filesArr = (target as HTMLInputElement).files;
@@ -166,15 +163,20 @@ function selectFile(event) {
 }
 
 function send_files() {
-  console.log('Go to send_files');
   if (object.currentFile) {
     let formData = new FormData();
 
     for (let file of object.currentFile) {
-      console.log('file n ', file);
       formData.append("files", file, file.name);
     }
     axios.post("/card", formData);
   }
 }
+
+function receive_files() {
+  axios.post("/mrt-files", { name: 'Roman' }).then(response => {
+    console.log(response);
+  });
+}
+
 </script>
