@@ -189,22 +189,23 @@ function blobToFile(theBlob: Blob, fileName:string) {
 function receive_files() {
   axios.post("/mrt-files", { name: 'Roman' }).then(response => {
     if (response.status === 200 && response.data) {
-      let fileData = response.data[7].buf;
-      let byteLength =  fileData.data.length;
-      var fileBuf = new Uint8Array(byteLength);
+      let dataArr = response.data;
+      for (var fileData of dataArr) {
+        if (fileData.name.endsWith(".dcm")) {
+          let arrFile = fileData.buf;
+          let arrLen = arrFile.data.length;
+          let name = fileData.name;
+          var fileBuf = new Uint8Array(arrLen);
 
-      console.log('fileData: ', fileData);
-      console.log('bytelength: ', byteLength);
-
-      for (var i = 0; i < byteLength; i++) {
-        fileBuf[i] = fileData.data[i];
+          console.log('arrLen : ', arrLen);
+          console.log(arrFile);
+          for (var i = 0; i < arrLen; i++) {
+            fileBuf[i] = arrFile.data[i];
+          }
+          var blob = new Blob([fileBuf], {type: "application/octet-stream"});
+          saveAs(blob, name);
+        }
       }
-      var blob = new Blob([fileBuf], {type: "application/octet-stream"});
-
-      saveAs(blob, "data2.dcm");
-
-      console.log('File Data written'); 
-      console.log(blob);
     }
   });
 }
