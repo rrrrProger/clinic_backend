@@ -96,7 +96,7 @@
             </v-expansion-panel-title>
             <!--            <span class="headline">{{ userData.name }}</span>-->
             <div class="d-flex justify-center">
-              <v-file-input multiple truncate-length="15" ref="myfile" model="files" @change="selectFile"></v-file-input>
+              <v-file-input multiple truncate-length="15" ref="myfile" model="files" @change="selectFile($event)" type="file"></v-file-input>
               <v-btn text @click="send_files($event)">Завантажити</v-btn>
             </div>
           </v-expansion-panel>
@@ -158,18 +158,23 @@ const cancelEdit = () => {
 
 
 
-function selectFile(file) {
-  object.currentFile = file;
+function selectFile(event) {
+  const target= event.target as EventTarget ;
+  const filesArr = (target as HTMLInputElement).files;
+
+  object.currentFile = filesArr;
 }
 
 function send_files() {
+  console.log('Go to send_files');
   if (object.currentFile) {
     let formData = new FormData();
 
-    console.log(object.currentFile)
-
-    
-    formData.append("file", object.currentFile);
+    for (let file of object.currentFile) {
+      console.log('file n ', file);
+      formData.append("files", file, file.name);
+    }
+    axios.post("/card", formData);
   }
 }
 </script>

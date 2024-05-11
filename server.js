@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -16,11 +15,6 @@ app.use('/', serveStatic(path.join(__dirname, '/dist')))
 app.get(/.*/, function (req, res) {
     res.sendFile(path.join(__dirname, '/dist/index.html'))
 })
-
-mongoose.connect('mongodb+srv://tsymbaljuk2001:messi10ronaldo7@cluster0.k870rvy.mongodb.net/?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
 
 const patientRoutes = require('./routes/patientsRouter'); // Adjust the path as needed
 
