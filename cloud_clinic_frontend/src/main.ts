@@ -37,6 +37,9 @@ router.beforeEach((to, from, next) => {
         case '/notifications':
           store.setPage('notifications');
           break;
+        case '/view-files':
+          store.setPage('mrtfiles');
+          break;
         default:
           store.setPage('');
           break;

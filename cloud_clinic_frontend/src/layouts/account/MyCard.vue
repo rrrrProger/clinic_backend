@@ -105,7 +105,9 @@
               Переглянути Файли МРТ
               <!--            <v-btn @click="editMode = true" v-if="!editMode">Edit</v-btn>-->
             </v-expansion-panel-title>
-            <!--            <span class="headline">{{ userData.name }}</span>-->
+            <div id="dwv">
+            <div id="layerGroup0"></div>
+            </div>
             <div class="d-flex justify-center">
               <v-btn text @click="receive_files($event)">Переглянути</v-btn>
             </div>
@@ -120,7 +122,9 @@
 import {ref, onMounted} from 'vue';
 import {mdiMagnify} from "@mdi/js";
 import axios from 'axios';
-import dwv from "dwv";
+import fs from "react-native-fs"
+import { saveAs } from 'file-saver';
+
 
 let object = {
   currentFile: null
@@ -172,10 +176,36 @@ function send_files() {
     axios.post("/card", formData);
   }
 }
+function blobToFile(theBlob: Blob, fileName:string) {
+  const b: any = theBlob;
+  //A Blob() is almost a File() - it's just missing the two properties below which we will add
+  b.lastModifiedDate = new Date();
+  b.name = fileName;
+    
+  //Cast to a File() type
+  return theBlob as File;
+}
 
 function receive_files() {
   axios.post("/mrt-files", { name: 'Roman' }).then(response => {
-    console.log(response);
+    if (response.status === 200 && response.data) {
+      let fileData = response.data[7].buf;
+      let byteLength =  fileData.data.length;
+      var fileBuf = new Uint8Array(byteLength);
+
+      console.log('fileData: ', fileData);
+      console.log('bytelength: ', byteLength);
+
+      for (var i = 0; i < byteLength; i++) {
+        fileBuf[i] = fileData.data[i];
+      }
+      var blob = new Blob([fileBuf], {type: "application/octet-stream"});
+
+      saveAs(blob, "data2.dcm");
+
+      console.log('File Data written'); 
+      console.log(blob);
+    }
   });
 }
 

@@ -28,6 +28,7 @@
       <Chats v-else-if="getPage === 'chats'"></Chats>
       <TreatmentPlans v-else-if="getPage === 'plans'"></TreatmentPlans>
       <Notifications v-else-if="getPage === 'notifications'"></Notifications>
+      <MRTFiles v-else-if="getPage == 'view-files'"></MRTFiles>
     </v-sheet>
   </v-main>
 
@@ -42,6 +43,7 @@ import Chats from  "./Chats.vue"
 import { appStore } from "../../store/app"
 import { storeToRefs } from "pinia"
 import Notifications from "@/components/Notifications.vue";
+import MRTFiles from "./MRTFiles.vue"
 
 const store = appStore()
 const { getPage } = storeToRefs(store)
