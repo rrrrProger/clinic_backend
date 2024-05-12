@@ -186,25 +186,30 @@ function blobToFile(theBlob: Blob, fileName:string) {
   return theBlob as File;
 }
 
+function download_files(fileData) {
+  if (fileData.name.endsWith(".dcm")) {
+      let arrFile = fileData.buf;
+      let arrLen = arrFile.data.length;
+      let name = fileData.name;
+      var fileBuf = new Uint8Array(arrLen);
+
+      console.log('arrLen : ', arrLen);
+      console.log(arrFile);
+      for (var i = 0; i < arrLen; i++) {
+        fileBuf[i] = arrFile.data[i];
+      }
+      var blob = new Blob([fileBuf], {type: 'application/dicom'});
+      saveAs(blob, name);
+  }
+}
+
 function receive_files() {
   axios.post("/mrt-files", { name: 'Roman' }).then(response => {
     if (response.status === 200 && response.data) {
       let dataArr = response.data;
       for (var fileData of dataArr) {
-        if (fileData.name.endsWith(".dcm")) {
-          let arrFile = fileData.buf;
-          let arrLen = arrFile.data.length;
-          let name = fileData.name;
-          var fileBuf = new Uint8Array(arrLen);
-
-          console.log('arrLen : ', arrLen);
-          console.log(arrFile);
-          for (var i = 0; i < arrLen; i++) {
-            fileBuf[i] = arrFile.data[i];
-          }
-          var blob = new Blob([fileBuf], {type: "application/octet-stream"});
-          saveAs(blob, name);
-        }
+        //download_files(fileData);
+        console.log(fileData.name);
       }
     }
   });

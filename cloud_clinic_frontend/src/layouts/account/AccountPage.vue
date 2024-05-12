@@ -20,6 +20,7 @@
             <v-list-item :prepend-icon="mdiChat" title="Чати" to="/chats" ></v-list-item>
             <v-list-item :prepend-icon="mdiCard" title="Плани лікування" to="/plans" ></v-list-item>
             <v-list-item :prepend-icon="mdiBell" title="Сповіщення" to="/notifications" ></v-list-item>
+            <v-list-item :prepend-icon="mdiBell" title="Перегляд МРТ" to="/view-files" ></v-list-item>
           </v-list>
         </v-navigation-drawer>
     </v-card>
@@ -28,7 +29,7 @@
       <Chats v-else-if="getPage === 'chats'"></Chats>
       <TreatmentPlans v-else-if="getPage === 'plans'"></TreatmentPlans>
       <Notifications v-else-if="getPage === 'notifications'"></Notifications>
-      <MRTFiles v-else-if="getPage == 'view-files'"></MRTFiles>
+      <MRTFiles v-else-if="getPage === 'mrtfiles'"></MRTFiles>
     </v-sheet>
   </v-main>
 
@@ -47,7 +48,6 @@ import MRTFiles from "./MRTFiles.vue"
 
 const store = appStore()
 const { getPage } = storeToRefs(store)
-
 </script>
 
 <style>
