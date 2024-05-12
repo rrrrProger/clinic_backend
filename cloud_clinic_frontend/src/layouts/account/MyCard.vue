@@ -193,15 +193,16 @@ function download_files(fileData) {
       let name = fileData.name;
       var fileBuf = new Uint8Array(arrLen);
 
-      console.log('arrLen : ', arrLen);
       console.log(arrFile);
       for (var i = 0; i < arrLen; i++) {
         fileBuf[i] = arrFile.data[i];
       }
       var blob = new Blob([fileBuf], {type: 'application/dicom'});
+//      add_link();
       saveAs(blob, name);
   }
 }
+
 
 function receive_files() {
   axios.post("/mrt-files", { name: 'Roman' }).then(response => {
