@@ -203,7 +203,6 @@ function download_files(fileData) {
   }
 }
 
-
 function receive_files() {
   axios.post("/mrt-files", { name: 'Roman' }).then(response => {
     if (response.status === 200 && response.data) {

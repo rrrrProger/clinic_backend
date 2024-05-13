@@ -1,6 +1,18 @@
 <template>
-    <div id="dwvAppp">
-    </div>
+    <input type="file" @change="getViewFiles($event)">
+    <div id="dwv-simpl0" class="dwv"></div>
+    <!-- Third party (dwv) -->
+    <script type="text/javascript" src="../../../../node_modules/jszip/dist/jszip.min.js"></script>
+    <script type="text/javascript" src="../../../../node_modules/konva/konva.min.js"></script>
+    <!-- decoders -->
+    <script type="text/javascript" src="../../../../node_modules/dwv/decoders/dwv/rle.js"></script>
+    <script type="text/javascript" src="../../../../node_modules/dwv/decoders/pdfjs/jpx.js"></script>
+    <script type="text/javascript" src="../../../../node_modules/dwv/decoders/pdfjs/util.js"></script>
+    <script type="text/javascript" src="../../../../node_modules/dwv/decoders/pdfjs/arithmetic_decoder.js"></script>
+    <script type="text/javascript" src="../../../../node_modules/dwv/decoders/pdfjs/jpg.js"></script>
+    <script type="text/javascript" src="../../../../node_modules/dwv/decoders/rii-mango/lossless-min.js"></script>
+    <!-- dwv -->
+    <script type="text/javascript" src="../../../../node_modules/dwv/dist/dwv.min.js"></script>
 </template>
 <script setup lang="ts">
 import {
@@ -11,6 +23,8 @@ import {
   decoderScripts,
   getDwvVersion,
 } from 'dwv';
+
+var dwv = dwv || {};
 
 var dwvApp = new App();
 const viewConfig0 = new ViewConfig('dwvAppp');
@@ -24,6 +38,8 @@ var tools = {
 };
 
 options.tools = tools;
+
+// "x-lml/x-evm"
 
 dwvApp.init(options);
 console.log('HERE');
@@ -49,31 +65,24 @@ dwvApp.addEventListener('loadend', function (/*event*/) {
     console.log('loadend');
 });
 
-const p = document.createElement('p');
-p.appendChild(document.createTextNode('Drag and drop data here or '));
-// input file
-const input = document.createElement('input');
-input.onchange = getFileToView;
-input.type = 'file';
-input.multiple = true;
-input.id = 'input-file';
-input.style.display = 'none';
-const label = document.createElement('label');
-label.htmlFor = 'input-file';
-const link = document.createElement('a');
-link.appendChild(document.createTextNode('click here'));
-link.id = 'input-file-link';
-label.appendChild(link);
-p.appendChild(input);
-p.appendChild(label);
 
-document.body.appendChild(p);
-
-function getFileToView(e) {
+//dwvApp.image.decoderScripts = {
+//        "jpeg2000": "decoders/pdfjs/decode-jpeg2000.js",
+//        "jpeg-lossless": "decoders/rii-mango/decode-jpegloss.js",
+//        "jpeg-baseline": "decoders/pdfjs/decode-jpegbaseline.js"
+//    };
+function getViewFiles(e) {
     const target = e.target as HTMLInputElement;
+
+    console.log('Go to getFileToView');
     if (target && target.files) {
-      const files = Array.from(target.files);
-      dwvApp.loadFiles(files);
+        const files = Array.from(target.files);
+        for (var file of target.files) {
+            console.log("file : ", file);
+        }
+
+        console.log('files: ', files);
+        dwvApp.loadFiles(files);
     }
 }
 </script>
