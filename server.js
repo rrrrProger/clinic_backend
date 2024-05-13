@@ -21,7 +21,7 @@ const patientRoutes = require('./routes/patientsRouter'); // Adjust the path as 
 app.use(bodyParser.json());
 app.use(patientRoutes);
 
-app.listen(process.env.PORT | port, () => {
+app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${port}`);
 });
 
