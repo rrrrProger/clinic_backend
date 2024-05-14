@@ -40,7 +40,7 @@
     "requirejs": "^2.3.6",
     "roboto-fontface": "*",
     "sequelize": "^6.37.1",
-    "vue": "^3.2.0",
+    "vue": "^2.7.16",
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
