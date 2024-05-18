@@ -40,6 +40,9 @@ router.beforeEach((to, from, next) => {
         case '/view-files':
           store.setPage('mrtfiles');
           break;
+        case '/monitor-patient':
+          store.setPage('monitor');
+          break;
         default:
           store.setPage('');
           break;
