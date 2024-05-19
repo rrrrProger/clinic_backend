@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@canvasjs/vue-charts": "^1.0.4",
+    "@chenfengyuan/vue-number-input": "^2.0.1",
     "@mdi/js": "^7.4.47",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
@@ -37,6 +38,7 @@
     "serve-static": "^1.15.0",
     "unplugin-fonts": "^1.1.1",
     "vue": "^3.4.27",
+    "vue-numeric": "^2.5.1",
     "vue-rollup-plugin": "^0.1.0",
     "vue-route": "^1.5.1",
     "vue-router": "^4.3.2",

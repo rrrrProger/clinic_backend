@@ -4,28 +4,31 @@ const multer = require("multer");
 const mongoose = require('mongoose');
 const { spawn } = require('child_process');
 
+let dataRet;
+
 function runPythonScript(scriptPath, args) {
 
-    // Use child_process.spawn method from 
-    // child_process module and assign it to variable
-    const pyProg = spawn('python', [scriptPath].concat(args));
-  
-    // Collect data from script and print to console
-    let data = '';
-    pyProg.stdout.on('data', (stdout) => {
-      data += stdout.toString();
-    });
-  
-    // Print errors to console, if any
-    pyProg.stderr.on('data', (stderr) => {
-      console.log(`stderr: ${stderr}`);
-    });
-  
-    // When script is finished, print collected data
-    pyProg.on('close', (code) => {
-      console.log(`child process exited with code ${code}`);
-      console.log(data);
-    });
+  // Use child_process.spawn method from 
+  // child_process module and assign it to variable
+  const pyProg = spawn('python', [scriptPath].concat(args));
+
+  // Collect data from script and print to console
+  let data = '';
+  pyProg.stdout.on('data', (stdout) => {
+    data += stdout.toString();
+  });
+
+  // Print errors to console, if any
+  pyProg.stderr.on('data', (stderr) => {
+    console.log(`stderr: ${stderr}`);
+  });
+
+  // When script is finished, print collected data
+  pyProg.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+    console.log('Print_data: ', data);
+    dataRet = data
+  });
 }
 
 mongoose.connect('mongodb+srv://tsymbaljuk2001:messi10ronaldo7@cluster0.k870rvy.mongodb.net/?retryWrites=true&w=majority', {
@@ -66,9 +69,10 @@ router.post("/mrt-files", function(req, res) {
 router.post("/predict-patient", function(req, res) {
   data = req.body.data;
   arg1 = data
-  console.log("Call predict: ", req.body.data);
   runPythonScript("./routes/main2.py", [arg1]);
-  return res.send(data)
+
+  console.log('result_data: ', dataRet);
+  return res.send(dataRet);
 })
 
 module.exports = router;

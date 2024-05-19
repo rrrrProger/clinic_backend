@@ -4,17 +4,24 @@ import os
 import sys
 from   pathlib import Path
 
+def convert_strings_to_floats(input_array):
+    output_array = []
+    for element in input_array:
+        converted_float = float(element)
+        output_array.append(converted_float)
+    return output_array
+
 scaler_path = os.path.join(os.getcwd(), 'routes', 'scaler.pkl')
 model_path = os.path.join(os.getcwd(), 'routes', 'model.pkl')
-
-print('file : ', scaler_path, file=sys.stderr)
-print('file : ', model_path, file=sys.stderr)
 
 cols = ['radius_mean', 'texture_mean', 'smoothness_mean', 'compactness_mean',
         'symmetry_mean', 'fractal_dimension_mean', 'radius_se', 'texture_se',
         'smoothness_se', 'compactness_se', 'symmetry_se', 'fractal_dimension_se']
 
-data = [(13.4, 20.52, 0.11, 0.14, 0.2116, 0.07325, 0.39060, 0.930600, 0.005414, 0.022650, 0.017050, 0.004005)]
+data_arr = sys.argv[1].split(',')
+data_arr = convert_strings_to_floats(data_arr)
+
+data = [tuple(data_arr)]
 
 df = pd.DataFrame(data, columns=cols)
 
@@ -26,4 +33,4 @@ with open(scaler_path, 'rb') as f:
 with open(model_path, 'rb') as f:
     svc = pickle.load(f)
     y_PRED = svc.predict(sc.transform(df))
-    print('y_PRED : ', y_PRED)
+    print(y_PRED)
