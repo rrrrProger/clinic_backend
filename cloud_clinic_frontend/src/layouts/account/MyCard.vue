@@ -208,7 +208,7 @@ function receive_files() {
     if (response.status === 200 && response.data) {
       let dataArr = response.data;
       for (var fileData of dataArr) {
-        //download_files(fileData);
+        download_files(fileData);
         console.log(fileData.name);
       }
     }

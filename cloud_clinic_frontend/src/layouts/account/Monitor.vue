@@ -3,11 +3,12 @@ export default {
   data() {
     return {
       chart: null,
+      chart2: null,
       xVal: 0,
       options: {
         exportEnabled: true,
         title:{
-          text: "Vue.js Dynamic Chart"
+          text: "Patient's Saturation"
         },
         data: [{
           type: "line",
@@ -23,9 +24,9 @@ export default {
   methods: {
     updateChart(count) {
       count = count || 1;
-      var yVal = 100; 
+      var yVal = 98;
       for (var j = 0; j < count; j++) {
-        yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
+        yVal = yVal +  Math.round(0 + Math.random() *(-2-2));
         this.options.data[0].dataPoints.push({
           x: this.xVal++,
           y: yVal

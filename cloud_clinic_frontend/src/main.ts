@@ -43,6 +43,9 @@ router.beforeEach((to, from, next) => {
         case '/monitor-patient':
           store.setPage('monitor');
           break;
+        case '/predict-patient':
+          store.setPage('predict');
+          break;
         default:
           store.setPage('');
           break;
