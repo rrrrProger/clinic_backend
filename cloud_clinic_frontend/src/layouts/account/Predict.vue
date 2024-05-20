@@ -2,6 +2,13 @@
 import axios from 'axios';
 import VueNumberInput from '@chenfengyuan/vue-number-input';
 
+var radius_mean, texture_mean, smoothness_mean;
+var compactness_mean, symmetry_mean, fractal_dimension_mean;
+var radius_se, texture_se, smoothness_se;
+var compactness_se, symmetry_se, fractal_dimension_se;
+var mi_res;
+var lbl;
+
 function get_py_prediction() {
     if (radius_mean && texture_mean && smoothness_mean &&
         compactness_mean && symmetry_mean && fractal_dimension_mean &&
@@ -14,18 +21,26 @@ function get_py_prediction() {
                 symmetry_mean, fractal_dimension_mean, radius_se, texture_se,
                 smoothness_se, compactness_se, symmetry_se, fractal_dimension_se]}).then(response => {
                 if (response.data) {
-                    console.log("predict-patient : ", response.data);
+                    mi_res = response.data
+                    lbl = mi_res[2]
+                    console.log("lbl: ", lbl)
+                    let lbl2 = document.getElementById("lbl");
+                    if (lbl2) {
+                        if (lbl === "B") {
+                            lbl2.textContent = "Пухлина злоякісна"
+                        } else if (lbl === "M") {
+                            lbl2.textContent = "Пухлина доброякісна"
+                        }
+ //                       lbl2.textContent = lbl;
+                    } else {
+                        console.log("lbl2 not found");
+                    }
                 }
             });
         } else {
             console.log("Dont get all values")
         }
 }
-
-var radius_mean, texture_mean, smoothness_mean;
-var compactness_mean, symmetry_mean, fractal_dimension_mean;
-var radius_se, texture_se, smoothness_se;
-var compactness_se, symmetry_se, fractal_dimension_se;
 
 </script>
 
@@ -67,4 +82,5 @@ var compactness_se, symmetry_se, fractal_dimension_se;
     <vue-number-input v-model="fractal_dimension_se" :model-value="0.004005"></vue-number-input>
 
     <v-btn text @click="get_py_prediction($event)">Отримати результат</v-btn>
+    <label id="lbl"></label>
 </template>
